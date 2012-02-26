@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>/*@ requires ${0:contract}; @*/</string>
+	<key>name</key>
+	<string>requires ...</string>
+	<key>scope</key>
+	<string>meta.function.c</string>
+	<key>tabTrigger</key>
+	<string>requires</string>
+	<key>uuid</key>
+	<string>F3F71BEE-54F2-44D2-9A44-1244BD7AAD01</string>
+</dict>
+</plist>

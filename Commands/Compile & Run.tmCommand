@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autoScrollOutput</key>
+	<true/>
+	<key>beforeRunningCommand</key>
+	<string>saveModifiedFiles</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby 
+
+require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
+require ENV['TM_SUPPORT_PATH'] + '/lib/tm/save_current_document'
+require ENV['TM_SUPPORT_PATH'] + '/lib/tm/process'
+
+def linkify(t)
+  out = []
+  t.lines.each do |line|
+    # error messages: &lt;file&gt;:&lt;line&gt;.&lt;col&gt;-&lt;line&gt;.&lt;col&gt;:&lt;msg&gt;
+    # we place the cursor after the error location
+    if line =~ /^(.*):([0-9]+)\.([0-9]+)-([0-9]+)\.([0-9]+):(.*)$/  
+      out &lt;&lt; "&lt;a href=\"txmt://open?url=file://#{e_url($1)}&amp;line=#{$4}&amp;column=#{$5}\"&gt;#{$1}:#{$2}.#{$3}-#{$4}.#{$5}&lt;/a&gt;: #{$6}"
+    else
+      out &lt;&lt; line
+    end
+  end
+  out.join '\n'
+end
+
+# save the current document
+TextMate.save_current_document
+
+# you can use variable TM_C0_CC0 to select a specific CC0 compiler
+cc0 = ENV['TM_C0_CC0'] || 'cc0'
+TextMate::require_cmd(cc0)
+
+# cc0 options
+options = ['-d',    # enable dynamic checks
+           '-x'     # execute compiled file
+          ]
+
+out, err = TextMate::Process.run(cc0, options, ENV['TM_FILEPATH']) 
+
+puts '&lt;pre&gt;'
+
+if err.empty?
+  puts out
+else
+  puts linkify(out) unless out.empty?
+  puts "&lt;span style='color: red'&gt;#{linkify(err)}&lt;/span&gt;"
+end
+
+puts '&lt;/pre&gt;'
+
+TextMate::exit_show_html
+
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@r</string>
+	<key>name</key>
+	<string>Compile &amp; Run</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.c0</string>
+	<key>uuid</key>
+	<string>7CE37B51-DB08-4116-B37B-7B3B9A824E27</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

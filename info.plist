@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>gbefgra.tehfg@hav-ghrovatra.qr</string>
+	<key>contactName</key>
+	<string>Torsten Grust</string>
+	<key>description</key>
+	<string>TextMate bundle for Frank Pfenning's &lt;a href="http://c0.typesafety.net/"&gt;C0 teaching language&lt;/a&gt;.</string>
+	<key>mainMenu</key>
+	<dict>
+		<key>items</key>
+		<array>
+			<string>7CE37B51-DB08-4116-B37B-7B3B9A824E27</string>
+			<string>82FA4B4E-DBFC-48C1-9D30-F07308C59881</string>
+			<string>------------------------------------</string>
+			<string>B9CBC708-0DE8-4790-9D5F-903A0083A113</string>
+			<string>54F998A3-F1C7-45B2-AE5C-9A94FE6F9B53</string>
+			<string>631FC964-4943-4C8A-8502-8F91293C72DB</string>
+			<string>9928736D-F4C8-4036-BA3F-1F64B8F87BB1</string>
+			<string>------------------------------------</string>
+			<string>1648D3DB-21BA-4BD3-A345-392D62010D74</string>
+		</array>
+		<key>submenus</key>
+		<dict>
+			<key>1648D3DB-21BA-4BD3-A345-392D62010D74</key>
+			<dict>
+				<key>items</key>
+				<array>
+					<string>5F6AEA5D-03AA-4684-8311-94598DB83528</string>
+					<string>620A9234-B891-4F57-B99C-A6580BA51911</string>
+					<string>32787275-B0FB-400E-A7AF-976FEFDC1536</string>
+					<string>F3F71BEE-54F2-44D2-9A44-1244BD7AAD01</string>
+				</array>
+				<key>name</key>
+				<string>Contracts</string>
+			</dict>
+		</dict>
+	</dict>
+	<key>name</key>
+	<string>C0</string>
+	<key>uuid</key>
+	<string>58114C6B-67D4-4DC4-A339-D58119F1FFFF</string>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>/*@ assert ${0:contract}; @*/</string>
+	<key>name</key>
+	<string>assert ...</string>
+	<key>scope</key>
+	<string>meta.block.c</string>
+	<key>tabTrigger</key>
+	<string>assert</string>
+	<key>uuid</key>
+	<string>5F6AEA5D-03AA-4684-8311-94598DB83528</string>
+</dict>
+</plist>
