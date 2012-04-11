@@ -19,12 +19,12 @@ def linkify(t)
     # error messages: &lt;file&gt;:&lt;line&gt;.&lt;col&gt;-&lt;line&gt;.&lt;col&gt;:&lt;msg&gt;
     # we place the cursor after the error location
     if line =~ /^(.*):([0-9]+)\.([0-9]+)-([0-9]+)\.([0-9]+):(.*)$/  
-      out &lt;&lt; "&lt;a href=\"txmt://open?url=file://#{e_url($1)}&amp;line=#{$4}&amp;column=#{$5}\"&gt;#{$1}:#{$2}.#{$3}-#{$4}.#{$5}&lt;/a&gt;: #{$6}"
+      out &lt;&lt; "&lt;a href=\"txmt://open?url=file://#{e_url($1)}&amp;line=#{$4}&amp;column=#{$5}\"&gt;#{$1}:#{$2}.#{$3}-#{$4}.#{$5}&lt;/a&gt;: #{$6}\n"
     else
       out &lt;&lt; line
     end
   end
-  out.join '\n'
+  out.join
 end
 
 # save the current document
