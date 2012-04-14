@@ -13,7 +13,7 @@
 	<key>name</key>
 	<string>if ... else ...</string>
 	<key>scope</key>
-	<string>meta.block.c</string>
+	<string>source.c0 meta.block.c</string>
 	<key>tabTrigger</key>
 	<string>else</string>
 	<key>uuid</key>

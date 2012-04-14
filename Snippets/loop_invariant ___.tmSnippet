@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>loop_invariant ...</string>
 	<key>scope</key>
-	<string>meta.block.c</string>
+	<string>source.c0 meta.block.c</string>
 	<key>tabTrigger</key>
 	<string>loop</string>
 	<key>uuid</key>

@@ -7,7 +7,7 @@
 	<key>name</key>
 	<string>ensures ...</string>
 	<key>scope</key>
-	<string>meta.function.c</string>
+	<string>source.c0 meta.function.c</string>
 	<key>tabTrigger</key>
 	<string>ensures</string>
 	<key>uuid</key>
