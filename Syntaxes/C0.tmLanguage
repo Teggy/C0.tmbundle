@@ -27,7 +27,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|char|int|string|struct|typedef)\b</string>
+			<string>\b(bool|char|int|string|struct|typedef|void)\b</string>
 			<key>name</key>
 			<string>storage.type.c</string>
 		</dict>
