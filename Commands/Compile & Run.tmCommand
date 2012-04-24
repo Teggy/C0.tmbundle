@@ -45,6 +45,10 @@ options = ['-d',    # enable dynamic checks
 # ensure working directory for C0 compiler is location of source file
 Dir.chdir(File.dirname ENV['TM_FILEPATH'])
 
+# grant a maximum of 10 CPU seconds for this process
+# (protection from eternally looping C0 programs)
+Process.setrlimit(Process::RLIMIT_CPU, 10)
+
 # run the C0 compiler
 out, err = TextMate::Process.run(cc0, options, ENV['TM_FILEPATH']) 
 
