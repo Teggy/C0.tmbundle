@@ -13,6 +13,7 @@ require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
 require ENV['TM_SUPPORT_PATH'] + '/lib/tm/save_current_document'
 require ENV['TM_SUPPORT_PATH'] + '/lib/tm/process'
 
+
 def linkify(t)
   out = []
   t.lines.each do |line|
@@ -34,31 +35,59 @@ TextMate.save_current_document
 cc0 = ENV['TM_C0_CC0'] || 'cc0'
 TextMate::require_cmd(cc0)
 
-# source file is saved, so TM_FILEPATH really should be set, but...
+# source file is saved, so TM_FILEPATH, TM_DISPLAYNAME really should be set, but...
 TextMate::require_env_var('TM_FILEPATH', "Did you already save your file/project to disk?")
+TextMate::require_env_var('TM_DISPLAYNAME', "Did you already save your file/project to disk?")
+
+# name of generated C0 executable 
+C0_EXEC_NAME = [ENV['TM_DISPLAYNAME'], Process.pid].join('-')
+
+# number of seconds after which we kill C0 or a stray executable
+C0_MAX_TIME = 5
 
 # cc0 options
-options = ['-d',    # enable dynamic checks
-           '-x'     # execute compiled file
+options = ['-d',               # enable dynamic checks
+           '-x',               # execute compiled file
+           '-o', C0_EXEC_NAME, # name of executable
           ]
 
 # ensure working directory for C0 compiler is location of source file
 Dir.chdir(File.dirname ENV['TM_FILEPATH'])
 
-# grant a maximum of 10 CPU seconds for this process
-# (protection from eternally looping C0 programs)
-Process.setrlimit(Process::RLIMIT_CPU, 10)
+rout, wout = IO.pipe
+rerr, werr = IO.pipe
 
-# run the C0 compiler
-out, err = TextMate::Process.run(cc0, options, ENV['TM_FILEPATH']) 
+pid = 0
+
+# run the C0 compiler in a seperate thread
+c0 = Thread.new {
+  pid = Process.fork {
+    STDOUT.reopen(wout)
+    STDERR.reopen(werr)
+    
+    Process.exec(cc0, *(options &lt;&lt; ENV['TM_FILEPATH']))
+  }
+  Process.wait(pid)
+  Thread.exit
+}
 
 puts '&lt;pre&gt;'
 
-if err.empty?
-  puts out
+unless c0.join(C0_MAX_TIME)
+    Thread.kill(c0)
+    `killall -KILL #{C0_EXEC_NAME}`
+    puts "&lt;span style='color: red'&gt;❌ Killed C0 (time exceeded)&lt;/span&gt;"
 else
-  puts linkify(out) unless out.empty?
-  puts "&lt;span style='color: red'&gt;#{linkify(err)}&lt;/span&gt;"
+  wout.close
+  werr.close
+  out, err = rout.read, rerr.read
+  
+  if err.empty?
+    puts out
+  else
+    puts linkify(out) unless out.empty?
+    puts "&lt;span style='color: red'&gt;🔴 #{linkify(err)}&lt;/span&gt;"
+  end
 end
 
 puts '&lt;/pre&gt;'
