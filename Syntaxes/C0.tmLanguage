@@ -27,7 +27,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|char|int|string|struct|typedef|void)\b</string>
+			<string>\b(void|typedef|(bool|char|int|string|struct)(\s*\[\s*\])*)</string>
 			<key>name</key>
 			<string>storage.type.c</string>
 		</dict>
@@ -187,7 +187,7 @@
 			<string>(?x)
     		(?:  ^                                 # begin-of-line
     		  |  
-    		     (?: (?= \s )           (?&lt;!else|return) (?&lt;=\w)      #  or word + space before name
+    		     (?: (?= \s )           (?&lt;!else|return) (?&lt;=[\w\[\]])      #  or word + space before name
     		     )
     		)
     		(\s*) (?!(while|for|if|else|return)\s*\()
