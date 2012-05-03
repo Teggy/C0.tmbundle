@@ -43,7 +43,7 @@ TextMate::require_env_var('TM_DISPLAYNAME', "Did you already save your file/proj
 C0_EXEC_NAME = [ENV['TM_DISPLAYNAME'], Process.pid].join('-')
 
 # number of seconds after which we kill C0 or a stray executable
-C0_MAX_TIME = 5
+C0_MAX_TIME = 10
 
 # cc0 options
 options = ['-d',               # enable dynamic checks
@@ -91,6 +91,12 @@ else
 end
 
 puts '&lt;/pre&gt;'
+
+# remove the executable
+begin
+  File.unlink(C0_EXEC_NAME)
+rescue
+end
 
 TextMate::exit_show_html
 
