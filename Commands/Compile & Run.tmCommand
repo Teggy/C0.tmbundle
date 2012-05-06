@@ -9,6 +9,8 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby 
 
+require 'fileutils'
+
 require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
 require ENV['TM_SUPPORT_PATH'] + '/lib/tm/save_current_document'
 require ENV['TM_SUPPORT_PATH'] + '/lib/tm/process'
@@ -92,9 +94,9 @@ end
 
 puts '&lt;/pre&gt;'
 
-# remove the executable
+# remove the executable and debug information
 begin
-  File.unlink(C0_EXEC_NAME)
+  FileUtils.rm_rf [C0_EXEC_NAME, C0_EXEC_NAME + '.dSYM']
 rescue
 end
 
