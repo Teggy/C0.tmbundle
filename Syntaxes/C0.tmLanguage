@@ -174,7 +174,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(file_t|args_t|image_t)\b</string>
+			<string>\b(args_t|file_t|image_t|rand_t)\b</string>
 			<key>name</key>
 			<string>support.type.lib.c0</string>
 		</dict>
