@@ -44,6 +44,9 @@ TextMate::require_env_var('TM_DISPLAYNAME', "Did you already save your file/proj
 # name of generated C0 executable 
 C0_EXEC_NAME = [ENV['TM_DISPLAYNAME'], Process.pid].join('-')
 
+# user-provided path for C0 libraries (optional)
+C0_LIBRARY_PATH = ENV['TM_C0_LIBRARY_PATH']
+
 # number of seconds after which we kill C0 or a stray executable
 C0_MAX_TIME = 10
 
@@ -51,7 +54,8 @@ C0_MAX_TIME = 10
 options = ['-d',               # enable dynamic checks
            '-x',               # execute compiled file
            '-o', C0_EXEC_NAME, # name of executable
-          ]
+          ] 
+options += ['-L', C0_LIBRARY_PATH] if C0_LIBRARY_PATH
 
 # ensure working directory for C0 compiler is location of source file
 Dir.chdir(File.dirname ENV['TM_FILEPATH'])
