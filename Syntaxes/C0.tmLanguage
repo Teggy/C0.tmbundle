@@ -549,7 +549,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\(\\|[ntvbrfa'"])</string>
+					<string>\\(\\|[0ntvbrfa'"])</string>
 					<key>name</key>
 					<string>constant.character.escape.c</string>
 				</dict>
@@ -577,7 +577,7 @@
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(\s*)\b(file_(read|close|eof|readline)|args_(flag|int|string|parse)|parse_(bool|int)|string_(length|charat|join|sub|equal|compare|from(int|bool|char)|tolower|terminated|(to|from)_chararray)|char_(ord|chr)|image_(width|height|create|clone|destroy|subimage|load|save|data))\b</string>
+			<string>(\s*)\b(print(|ln|int|char|bool)|file_(read|close|eof|readline)|args_(flag|int|string|parse)|parse_(bool|int)|string_(length|charat|join|sub|equal|compare|from(int|bool|char)|tolower|terminated|(to|from)_chararray)|char_(ord|chr)|image_(width|height|create|clone|destroy|subimage|load|save|data)|rand|init_rand)\b</string>
 		</dict>
 		<key>parens</key>
 		<dict>
