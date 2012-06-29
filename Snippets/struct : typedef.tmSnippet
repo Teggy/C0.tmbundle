@@ -3,9 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>typedef struct ${1}* ${1};
-
-struct ${1:name} { ${0:fields} };</string>
+	<string>struct ${1:name} { ${0:fields} };
+typedef struct ${1}* ${1};</string>
 	<key>name</key>
 	<string>struct / typedef</string>
 	<key>scope</key>
